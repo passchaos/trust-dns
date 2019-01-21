@@ -416,7 +416,7 @@ impl HttpsClientStreamBuilder {
     /// * `loop_handle` - The reactor Core handle
     pub fn build(self, name_server: SocketAddr, dns_name: String) -> HttpsClientConnect {
         let mut client_config = self.client_config;
-        client_config.alpn_protocols.push(ALPN_H2.to_owned());
+        client_config.alpn_protocols.push(ALPN_H2.as_bytes().to_vec());
 
         let tls = TlsConfig {
             client_config: Arc::new(client_config),
